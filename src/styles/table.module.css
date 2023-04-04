@@ -1,0 +1,51 @@
+.headerRow {
+  @apply sticky top-0 z-30 bg-white;
+}
+
+.headerCell {
+  @apply pt-3 pb-2 px-4 font-semibold text-slate-700 align-middle text-left;
+}
+
+.cell {
+  @apply pt-4 pb-3 px-4 align-middle text-left;
+}
+
+.empty {
+  @apply pt-2 pb-3 px-4 align-middle text-left;
+}
+
+.row {
+  @apply relative z-10;
+}
+
+.row.row--added .rowBackground {
+  @apply bg-green-100;
+  animation: append-animate 1s ease-out;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+.rowBackground {
+  @apply absolute bg-slate-50 border-b-2 border-slate-200 w-full h-full top-0 left-0 -z-10 rounded;
+}
+
+@keyframes append-animate {
+  from {
+    @apply bg-green-100;
+  }
+  to {
+    @apply bg-slate-50;
+  }
+}
+
+.row:hover .rowBackground {
+  @apply bg-sky-100 !important;
+}
+
+.container {
+  @apply bg-white rounded-md border border-slate-100 shadow-md overflow-auto px-2;
+}
+
+.customTable {
+  @apply w-full table table-auto border-separate border-spacing-y-2;
+}

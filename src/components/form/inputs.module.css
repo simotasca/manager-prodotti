@@ -1,0 +1,58 @@
+.inputGroup {
+  @apply flex flex-col w-full;
+}
+
+.inputGroup .inputGroupLabel {
+  @apply text-sm font-medium;
+}
+
+.inputGroup .inputGroupField {
+  @apply w-full;
+  @apply py-1 px-2;
+  @apply rounded;
+  @apply border border-neutral-400;
+  @apply outline-2 -outline-offset-2;
+  @apply focus:outline focus:outline-blue-400;
+  @apply focus-within:outline focus-within:outline-blue-400;
+}
+
+.inputGroup.inputGroupError .inputGroupField {
+  @apply outline outline-red-500;
+}
+
+.inputGroup .inputGroupErrorMsg {
+  @apply text-red-500;
+  @apply hidden;
+}
+
+.inputGroup.inputGroupError .inputGroupErrorMsg {
+  @apply inline;
+}
+
+/* SELECT */
+.inputGroup select.inputGroupField {
+  @apply cursor-pointer;
+}
+
+/* INPUT */
+.inputGroup input.inputGroupField {
+  @apply shadow-inner shadow-neutral-300;
+}
+
+.inputGroup input.inputGroupField:not(.inputPlaceholder) {
+  @apply placeholder:tracking-widest;
+}
+
+/* INPUT */
+.inputGroup input[type="checkbox"].inputGroupField {
+  @apply shadow-none h-5 w-5 mt-1;
+}
+
+/* TEXTAREA */
+.inputGroup textarea.inputGroupField {
+  @apply shadow-inner shadow-neutral-300;
+}
+
+.inputGroup textarea.inputGroupField:not(.inputPlaceholder) {
+  @apply placeholder:tracking-widest;
+}

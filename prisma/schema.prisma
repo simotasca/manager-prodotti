@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = "debian-openssl-3.0.x"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Azienda {
+  id        Int     @id @default(autoincrement())
+  nome      String
+  indirizzo String?
+  localita  String?
+  cap       Int?
+  provincia String?
+  Nazione   String?
+  telefoni  String?
+  mail      String?
+  contatti  String?
+
+  certificati    Certificato[]
+  gruppiProdotti GruppoProdotti[]
+}
+
+model CategoriaProdotto {
+  id   Int    @id @default(autoincrement())
+  nome String
+
+  gruppiProdotti GruppoProdotti[]
+}
+
+model Prodotto {
+  id                  Int                   @id @default(autoincrement())
+  nome                String
+  idGruppo            Int?
+  gruppo              GruppoProdotti?       @relation(fields: [idGruppo], references: [id])
+  ProdottoCertificato ProdottoCertificato[]
+}
+
+model GruppoProdotti {
+  id          Int               @id @default(autoincrement())
+  nome        String?
+  idAzienda   Int
+  azienda     Azienda           @relation(fields: [idAzienda], references: [id])
+  idCategoria Int
+  categoria   CategoriaProdotto @relation(fields: [idCategoria], references: [id])
+
+  prodotti Prodotto[]
+}
+
+model Brand {
+  id   Int    @id @default(autoincrement())
+  nome String
+}
+
+model ProdottoCertificato {
+  idProdotto    Int
+  prodotto      Prodotto    @relation(fields: [idProdotto], references: [id])
+  idCertificato Int
+  certificato   Certificato @relation(fields: [idCertificato], references: [id])
+  note          String?
+
+  @@id([idProdotto, idCertificato])
+}
+
+model BrandCertificato {
+  nome          String
+  idCertificato Int
+  certificato   Certificato @relation(fields: [idCertificato], references: [id])
+
+  @@id([nome, idCertificato])
+}
+
+model Certificato {
+  id                  Int       @id @default(autoincrement())
+  note                String?
+  azienda             Azienda   @relation(fields: [idAzienda], references: [id])
+  idAzienda           Int
+  emissione           DateTime  @default(now())
+  scadenza            DateTime?
+  produzione          DateTime?
+  passover            Boolean   @default(false)
+  livelloKashrut      String
+  behalf              String?
+  settimanaProduzione Int?
+  localitaProduzione  String?
+  brand               String?
+
+  prodottiCertificati ProdottoCertificato[]
+  brandCertificati    BrandCertificato[]
+}
