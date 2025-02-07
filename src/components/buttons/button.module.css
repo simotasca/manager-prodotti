@@ -1,0 +1,25 @@
+.button {
+  @apply rounded-md;
+  @apply px-2 py-1;
+  @apply text-sm font-semibold tracking-wide;
+}
+
+.buttonGreen {
+  @apply bg-gradient-to-tl from-green-400 to-emerald-400;
+  @apply text-white;
+}
+
+.buttonRed {
+  @apply bg-gradient-to-tl from-red-500 to-orange-600;
+  @apply text-white;
+}
+
+.buttonOrange {
+  @apply bg-gradient-to-tl from-red-400 to-orange-400;
+  @apply text-white;
+}
+
+.buttonBlue {
+  @apply bg-gradient-to-tl from-blue-400 to-sky-400;
+  @apply text-white;
+}
